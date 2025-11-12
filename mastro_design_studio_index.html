@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mastro Design Studio — Design Beyond Boundaries</title>
+  <meta name="description" content="Mastro Design Studio — Minimalist brand, UI/UX & graphic design." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #1C1C1C;
+      --panel: #242424;
+      --muted: #A8A8A8;
+      --accent: #16A34A;
+      --white: #F5F5F5;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+      line-height:1.5;
+    }
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:0 auto;padding:40px 20px}
+    header{
+      position:fixed;left:0;right:0;top:18px;z-index:60;display:flex;justify-content:center;pointer-events:none
+    }
+    .nav{
+      pointer-events:auto;display:flex;align-items:center;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(4px);padding:8px 14px;border-radius:999px;gap:18px
+    }
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#0b7a35);display:grid;place-items:center;transform:skewX(-12deg)}
+    .logo .mark span{display:block;width:16px;height:16px;background:transparent;border-left:3px solid rgba(255,255,255,0.12);border-bottom:3px solid rgba(255,255,255,0.12);transform:rotate(45deg)}
+
+    nav a{color:var(--white);text-decoration:none;font-weight:500;font-size:14px;opacity:0.9}
+    nav a:hover{opacity:1}
+    .navlinks{display:flex;gap:14px;align-items:center}
+
+    main{padding-top:120px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:80px 0}
+    .hero-left h1{font-size:44px;margin:0 0 12px;color:var(--white);letter-spacing:-0.02em}
+    .tagline{color:var(--muted);font-weight:500;margin-bottom:22px}
+    .cta{display:flex;gap:12px;align-items:center}
+    .btn{background:transparent;border:2px solid rgba(255,255,255,0.06);padding:12px 18px;border-radius:12px;color:var(--white);font-weight:600;cursor:pointer;backdrop-filter:blur(4px)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#11903a);border:0}
+    .btn:hover{transform:translateY(-4px);transition:all 220ms cubic-bezier(.2,.9,.3,1)}
+
+    /* geometric shapes */
+    .hero-art{position:relative;height:420px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .shape{position:absolute;opacity:0.12;border-radius:12px}
+    .shape.s1{width:420px;height:420px;background:conic-gradient(from 180deg, rgba(22,163,74,0.12), transparent);right:-60px;top:-80px;transform:rotate(18deg);animation:float 8s ease-in-out infinite}
+    .shape.s2{width:220px;height:220px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));left:-40px;bottom:-40px;transform:rotate(-12deg);animation:float 10s ease-in-out infinite}
+    .shape.s3{width:120px;height:120px;border:2px dashed rgba(255,255,255,0.03);right:30px;bottom:60px;animation:spin 18s linear infinite}
+    @keyframes float{0%{transform:translateY(0) rotate(18deg)}50%{transform:translateY(-18px) rotate(18deg)}100%{transform:translateY(0) rotate(18deg)}}
+    @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+    .hero-art .card{width:70%;height:70%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;display:flex;flex-direction:column;align-items:flex-start;padding:20px;gap:14px}
+    .card h3{margin:0}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* Sections */
+    section{padding:80px 0}
+    h2.section-title{font-size:20px;margin:0 0 20px}
+    .grid{display:grid;gap:20px}
+
+    /* About */
+    .about{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center}
+    .about p{color:var(--muted);margin:0}
+
+    /* Services */
+    .services .grid{grid-template-columns:repeat(3,1fr)}
+    .service-card{background:var(--panel);padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);transition:transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms;cursor:pointer}
+    .service-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 10px 30px rgba(0,0,0,0.6);border-color:rgba(22,163,74,0.18)}
+    .service-card .icon{width:54px;height:54px;border-radius:10px;background:linear-gradient(135deg, rgba(22,163,74,0.12), rgba(255,255,255,0.02));display:grid;place-items:center;font-weight:700}
+    .service-card h3{margin:10px 0 6px}
+    .service-card p{color:var(--muted);font-size:14px}
+
+    /* Portfolio */
+    .portfolio-grid{grid-template-columns:repeat(3,1fr)}
+    .project{position:relative;border-radius:10px;overflow:hidden;cursor:pointer}
+    .project img{width:100%;height:230px;object-fit:cover;display:block;transition:transform 360ms}
+    .project .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.45));display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+    .project:hover img{transform:scale(1.06)}
+    .project-title{font-weight:600}
+    .project-sub{color:var(--muted);font-size:13px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:90;padding:20px}
+    .modal.open{display:flex}
+    .modal-inner{background:var(--panel);width:min(900px,95%);border-radius:12px;padding:18px}
+    .modal-inner img{width:100%;height:420px;object-fit:cover;border-radius:8px}
+    .modal-inner .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+    /* Contact */
+    .contact .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px}
+    .contact form{display:grid;gap:12px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:8px;color:var(--white);outline:none}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.35)}
+    .socials{display:flex;gap:12px}
+
+    footer{padding:40px 0;color:var(--muted);text-align:center}
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .about{grid-template-columns:1fr}
+      .services .grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-art{height:320px}
+    }
+    @media (max-width:560px){
+      .services .grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      header{top:10px}
+      .logo .text{display:none}
+      .container{padding:28px 16px}
+      .hero-left h1{font-size:28px}
+    }
+
+    /* reveal animation */
+    .reveal{opacity:0;transform:translateY(12px);transition:all 520ms cubic-bezier(.2,.9,.3,1)}
+    .reveal.in-view{opacity:1;transform:none}
+
+    /* subtle nav underline */
+    .nav a.active{position:relative}
+    .nav a.active::after{content:"";position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#0b7a35);bottom:-8px;border-radius:999px}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <div class="logo">
+      <div class="mark" aria-hidden><span></span></div>
+      <div class="text"><div style="font-size:14px">Mastro</div><div style="font-size:11px;color:var(--muted)">Design Studio</div></div>
+    </div>
+    <div style="flex:1"></div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="reveal">Mastro Design Studio</h1>
+      <div class="tagline reveal">Design Beyond Boundaries — Minimalist brand, UI/UX &amp; graphic design.</div>
+      <div class="cta reveal">
+        <a class="btn primary" href="#portfolio">Explore Our Work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <div style="height:28px"></div>
+      <div class="reveal" style="color:var(--muted);font-size:13px">Based in Chennai • UI/UX &amp; Graphic design • Freelance &amp; Studio work</div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="shape s1" aria-hidden></div>
+      <div class="shape s2" aria-hidden></div>
+      <div class="shape s3" aria-hidden></div>
+
+      <div class="card">
+        <h3>Studio Highlights</h3>
+        <div class="muted">Minimalist identity systems • Rapid MVP UI • Print &amp; campaign design</div>
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+          <div style="font-weight:700">10+</div>
+          <div style="color:var(--muted);font-size:13px">Projects delivered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="reveal">
+      <h2 class="section-title">About</h2>
+      <p>Mastro Design Studio builds clear, purposeful designs that scale across brand and product. We believe in minimal systems — bold ideas expressed through measured geometry, green accents, and thoughtful typography. Our work balances craft and speed so startups and brands can move from concept to confident product quickly.</p>
+    </div>
+    <aside class="reveal">
+      <div class="card" style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);">
+        <h3 style="margin:0">Philosophy</h3>
+        <p class="muted" style="margin-top:8px">Minimalism, clarity, and systems — design that scales.</p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <h2 class="section-title reveal">Services</h2>
+    <div class="grid reveal services-grid" style="grid-template-columns:1fr">
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="service-card reveal">
+          <div class="icon">B</div>
+          <h3>Brand Identity</h3>
+          <p>Create logos, systems, and brand guidelines that last.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon">UI</div>
+          <h3>UI / UX</h3>
+          <p>Designs for products and MVPs with user-centred patterns.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon">G</div>
+          <h3>Graphic Design</h3>
+          <p>Campaigns, posters, and social assets that communicate clearly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <h2 class="section-title reveal">Portfolio</h2>
+
+    <div class="grid portfolio-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <!-- placeholder projects (clickable) -->
+      <div class="project" data-title="Project Meridian" data-desc="Branding &amp; Visual Identity" data-img="https://picsum.photos/seed/p1/1200/800">
+        <img src="https://picsum.photos/seed/p1/800/600" alt="Project Meridian">
+        <div class="overlay"><div class="project-title">Project Meridian</div><div class="project-sub">Branding &amp; Visual Identity</div></div>
+      </div>
+
+      <div class="project" data-title="Saffron App" data-desc="Mobile UI/UX for commerce" data-img="https://picsum.photos/seed/p2/1200/800">
+        <img src="https://picsum.photos/seed/p2/800/600" alt="Saffron App">
+        <div class="overlay"><div class="project-title">Saffron App</div><div class="project-sub">Mobile UI/UX</div></div>
+      </div>
+
+      <div class="project" data-title="Paper Trail" data-desc="Print campaign and posters" data-img="https://picsum.photos/seed/p3/1200/800">
+        <img src="https://picsum.photos/seed/p3/800/600" alt="Paper Trail">
+        <div class="overlay"><div class="project-title">Paper Trail</div><div class="project-sub">Print &amp; Campaign</div></div>
+      </div>
+
+      <div class="project" data-title="Neon Market" data-desc="E-commerce landing &amp; visual system" data-img="https://picsum.photos/seed/p4/1200/800">
+        <img src="https://picsum.photos/seed/p4/800/600" alt="Neon Market">
+        <div class="overlay"><div class="project-title">Neon Market</div><div class="project-sub">Landing &amp; Visual System</div></div>
+      </div>
+
+      <div class="project" data-title="Greenline" data-desc="Sustainable brand identity" data-img="https://picsum.photos/seed/p5/1200/800">
+        <img src="https://picsum.photos/seed/p5/800/600" alt="Greenline">
+        <div class="overlay"><div class="project-title">Greenline</div><div class="project-sub">Branding</div></div>
+      </div>
+
+      <div class="project" data-title="Atlas Dashboard" data-desc="Data-product UI" data-img="https://picsum.photos/seed/p6/1200/800">
+        <img src="https://picsum.photos/seed/p6/800/600" alt="Atlas Dashboard">
+        <div class="overlay"><div class="project-title">Atlas Dashboard</div><div class="project-sub">Product UI</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2 class="section-title reveal">Contact</h2>
+    <div class="grid" style="grid-template-columns:1fr 360px;gap:30px">
+      <div class="reveal">
+        <div class="card">
+          <form onsubmit="return false;">
+            <input placeholder="Your name" required />
+            <input placeholder="Your email" type="email" required />
+            <textarea rows="5" placeholder="Brief message"></textarea>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <button class="btn primary" onclick="mailtoShow()">Send message</button>
+              <button class="btn" onclick="document.querySelector('input').value='';document.querySelectorAll('textarea')[0].value='';">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <aside class="reveal">
+        <div class="card">
+          <h3 style="margin:0">Say hello</h3>
+          <p class="muted" style="margin-top:8px">Email: <a href="mailto:hello@mastrodesign.com" style="color:var(--accent);text-decoration:none">hello@mastrodesign.com</a></p>
+          <div style="height:14px"></div>
+          <div class="socials">
+            <a href="#" aria-label="Instagram" style="text-decoration:none;color:var(--muted)">IG</a>
+            <a href="#" aria-label="Behance" style="text-decoration:none;color:var(--muted)">BE</a>
+            <a href="#" aria-label="LinkedIn" style="text-decoration:none;color:var(--muted)">LI</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="reveal">
+    <div>© <span id="year"></span> Mastro Design Studio — Design Beyond Boundaries</div>
+  </footer>
+
+</main>
+
+<!-- Modal -->
+<div class="modal" id="modal" aria-hidden>
+  <div class="modal-inner">
+    <img id="modal-img" src="" alt="project">
+    <div class="meta">
+      <div>
+        <div id="modal-title" style="font-weight:700"></div>
+        <div id="modal-desc" style="color:var(--muted);font-size:13px"></div>
+      </div>
+      <div><button class="btn" onclick="closeModal()">Close</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // small utilities
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Intersection Observer for reveals + nav active
+  const reveals = document.querySelectorAll('.reveal');
+  const options = {threshold:0.12};
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('in-view');
+    });
+  },options);
+  reveals.forEach(r=>io.observe(r));
+
+  // Smooth nav active state
+  const sections = Array.from(document.querySelectorAll('main section[id]'));
+  const navlinks = document.querySelectorAll('.navlinks a');
+  const secObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navlinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+      }
+    });
+  },{threshold:0.4});
+  sections.forEach(s=>secObserver.observe(s));
+
+  // Portfolio modal open
+  document.querySelectorAll('.project').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      const img = p.dataset.img || p.querySelector('img').src;
+      const title = p.dataset.title || '';
+      const desc = p.dataset.desc || '';
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal').classList.add('open');
+      document.getElementById('modal').setAttribute('aria-hidden','false');
+    });
+  });
+  function closeModal(){
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal').setAttribute('aria-hidden','true');
+  }
+  document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id === 'modal') closeModal(); });
+
+  // Mailto from form (simple)
+  function mailtoShow(){
+    const inputs = document.querySelectorAll('input, textarea');
+    const name = inputs[0].value || '—';
+    const email = inputs[1].value || 'hello@mastrodesign.com';
+    const message = inputs[2].value || '';
+    const subject = encodeURIComponent('Website enquiry from ' + name);
+    const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+    window.location.href = 'mailto:hello@mastrodesign.com?subject='+subject+'&body='+body;
+  }
+
+  // small accessibility: close modal on esc
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+</script>
+
+</body>
+</html>
